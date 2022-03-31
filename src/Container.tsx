@@ -5,6 +5,10 @@ import Moives from "./Movies/Moives";
 
 import Header from "./Upbit/Header";
 
+import PriceContainer from "./Upbit/PriceContainer";
+import PriceSearch from "./Upbit/PriceSearch";
+import PriceTable from "./Upbit/PriceTable";
+
 
 interface ContainerProps {
 
@@ -19,37 +23,18 @@ const Container: React.FunctionComponent<ContainerProps> = () => {
         <div className="container mx-auto">
 
             {/*Header*/}
-            <Header />
+            <Header/>
 
             {/*MainWrapper*/}
 
             <div className="flex flex-row min-h-[90vh]">
 
                 {/*Price Chart*/}
-                <div className="basis-4/6 min-h-full">02</div>
+                <div className="basis-4/6">02</div>
 
                 {/*Price Panel*/}
-                <div className="basis-2/6 min-h-full">
-
-                    {/*Price Panel Container*/}
-                    <div className="flex flex-col min-h-full">
-
-                        {/*Price Info*/}
-                        <div className="basis-2/6 bg-indigo-500">
-                            <div className="min-h-full">
-                                ddd
-                            </div>
-
-                        </div>
-
-                        {/*Pirce Table*/}
-                        <div className="basis-4/6 bg-cyan-500">
-
-                        </div>
-
-                    </div>
-
-
+                <div className="basis-2/6 border border-black-600 rounded-md mt-2">
+                    <PriceContainer />
                 </div>
 
             </div>
