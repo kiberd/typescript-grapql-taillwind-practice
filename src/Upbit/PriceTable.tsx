@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 
 interface PriceTableProps {
     data: PriceInfo[] | undefined,
     targetCoinList: string[] | undefined,
+    searchKeyword: string | undefined,
 }
 
 interface PriceInfo {
@@ -32,44 +33,90 @@ const getName = (code: string) => {
     }
 }
 
-const PriceTable: React.FunctionComponent<PriceTableProps> = ({data, targetCoinList}) => {
+const PriceTable: React.FunctionComponent<PriceTableProps> = ({data, targetCoinList, searchKeyword}) => {
+
+
+    const filterCoinList = (data: PriceInfo[] | undefined) => {
+
+        let filterdArry: PriceInfo[] = [];
+        let resultArry: PriceInfo[] = [];
+
+        targetCoinList?.map((code) => {
+            data?.map((info) => {
+                if (code === info.code) filterdArry.push(info);
+            });
+        });
+
+        resultArry = filterdArry;
+
+        if (searchKeyword) {
+
+            resultArry = [];
+
+            filterdArry.map((info) => {
+                if (getName(info.code)?.includes(searchKeyword)) {
+                    resultArry.push(info);
+                }
+            });
+        }
+
+        return resultArry;
+    };
+
+    const [targetData, setTargetData] = useState<PriceInfo[]>();
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if (data) setTargetData(filterCoinList(data));
+    }, [data]);
+
+    useEffect(() => {
+        if (targetCoinList) setIsLoading(true);
+    }, [targetCoinList]);
+
+    useEffect(() => {
+        if (targetData?.length) setIsLoading(false);
+    }, [targetData?.length]);
 
     return (
-        <table className="table-auto">
-            <thead>
-            <tr>
-                <th>한글명</th>
-                <th>현재가</th>
-                <th>전일대비</th>
-                <th>거래대금</th>
-            </tr>
-            </thead>
+        <>
+            {
+                isLoading ? <div>Loading</div> : <table className="table-auto">
+                    <thead>
+                    <tr>
+                        <th>한글명</th>
+                        <th>현재가</th>
+                        <th>전일대비</th>
+                        <th>거래대금</th>
+                    </tr>
+                    </thead>
 
-            <tbody>
+                    <tbody>
 
-            {data?.map((info:PriceInfo) => (
-                <tr>
-                    <td>
-                        {getName(info.code)}
-                    </td>
-                    <td>
-                        {info.currentPrice.toLocaleString()}
-                    </td>
-                    <td>
-                        {(info.changeRate * 100).toFixed(2)}%
-                    </td>
-                    <td>
-                        {Math.floor(info.tradeVolume * 0.000001).toLocaleString()}백만
-                    </td>
-                </tr>
+                    {targetData?.map((info: PriceInfo) => (
+                        <tr>
+                            <td>
+                                {getName(info.code)}
+                            </td>
+                            <td>
+                                {info.currentPrice.toLocaleString()}
+                            </td>
+                            <td>
+                                {(info.changeRate * 100).toFixed(2)}%
+                            </td>
+                            <td>
+                                {Math.floor(info.tradeVolume * 0.000001).toLocaleString()}백만
+                            </td>
+                        </tr>
 
-            ))}
-
-
+                    ))}
 
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            }
+        </>
     )
 }
-export default PriceTable;
+
+export default React.memo(PriceTable);

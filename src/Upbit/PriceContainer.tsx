@@ -129,28 +129,6 @@ const PriceContainer = () => {
         }
     };
 
-    function filterCoinList (priceInfo: PriceInfo[] | undefined){
-
-        let filterdArry: PriceInfo[] = [];
-        let resultArry: PriceInfo[] = [];
-
-        targetCoinList?.map((code) => {
-            priceInfo?.map((info) => {
-                if (code === info.code) filterdArry.push(info);
-            });
-        });
-
-        resultArry = filterdArry;
-
-        if (searchKeyword){
-            filterdArry.map((info) => {
-                if (getName(info.code)?.includes(searchKeyword)) resultArry.push(info);
-            });
-        }
-
-        return resultArry;
-    };
-
     const handleSearchKeyword = (searchKeyword: string) => {
         setSearchKeyword(searchKeyword);
     }
@@ -175,14 +153,32 @@ const PriceContainer = () => {
         ], []
     );
 
-    const data = useMemo(() => filterCoinList(priceInfo), [priceInfo]);
+    // const data = useMemo(() => filterCoinList(priceInfo), [priceInfo]);
+    const data = useMemo(() => priceInfo, [priceInfo]);
 
     return (
         <div className="flex flex-col min-h-full">
-            <button onClick={() => setTargetCoinList(coinList.entireCoinList)}>EntireCoinList</button>
-            <button onClick={() => setTargetCoinList(coinList.bookMarkCoinList)}>BookmarkCoinList</button>
+
             <PriceSearch onHandleSearchKeyword={handleSearchKeyword}/>
-            <PriceTable data={data} targetCoinList={targetCoinList}/>
+
+            <nav className="py-4 px-6 text-sm font-small">
+                <ul className="flex justify-items-center space-x-5">
+                    <li className="basis-1/2">
+                        <a onClick={() => setTargetCoinList(coinList.entireCoinList)} className={`block px-20 py-2 rounded-md bg-sky-500 text-white cursor-pointer text-center`} >
+                            전체
+                        </a>
+                    </li>
+                    <li className="basis-1/2">
+                        <a onClick={() => setTargetCoinList(coinList.bookMarkCoinList)} className={`block px-20 py-2 rounded-md bg-sky-500 text-white cursor-pointer text-center`} >
+                            즐겨찾기
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <PriceTable data={data} searchKeyword={searchKeyword} targetCoinList={targetCoinList}/>
+
         </div>
     )
 }

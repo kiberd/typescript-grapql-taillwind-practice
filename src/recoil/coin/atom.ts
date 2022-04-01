@@ -6,5 +6,6 @@ export const coinListState = atom({
     default: {
         entireCoinList : ["KRW-BTC", "KRW-ETH", "KRW-BCH", "KRW-ETC", "KRW-SAND"],
         bookMarkCoinList : ["KRW-BTC", "KRW-ETH"],
+        chartTargetCoin: "",
     }
 })
