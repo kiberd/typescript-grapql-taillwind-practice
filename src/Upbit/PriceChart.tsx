@@ -49,7 +49,7 @@ const PriceChart = () => {
     const ScaleProvider = discontinuousTimeScaleProviderBuilder().inputDateAccessor(
         (d) => new Date(d.date)
     );
-    const height = 700;
+    const height = 750;
     const width = 900;
     const margin = { left: 0, right: 48, top: 0, bottom: 24 };
 
@@ -119,8 +119,21 @@ const PriceChart = () => {
         return data.close > data.open ? "#26a69a" : "#ef5350";
     };
 
+
+//     const ChartWrapper = styled.div`
+//   background: white;
+//   display: flex;
+//   // justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   // margin: 2.4% 0% 0% 10%;
+//   width: 100%;
+//   margin-top: 1%;
+//   min-height: 50vh;
+// `;
+
     return (
-        <div>
+        <div className="flex mt-[1%] w-full h-5/6 justify-center items-center">
             <ChartCanvas
                 height={height}
                 ratio={3}

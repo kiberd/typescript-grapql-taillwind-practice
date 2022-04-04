@@ -20,7 +20,7 @@ const PriceSearch: React.FC<PriceSearchProps> = ({ onHandleSearchKeyword }) => {
 
                     {/*SearchInputContainer*/}
                     <div
-                        className="flex flex-row justify-items-center items-center w-9/10  border-b-[0.5px] border-black-600">
+                        className="flex flex-row justify-items-center items-center w-9/10  border-b-[0.5px] border-black-600 pb-1">
                         {/*SearchInput*/}
                         <div className="w-9/10 pt-1 pb-1 pl-2">
 
