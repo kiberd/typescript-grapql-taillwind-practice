@@ -46,6 +46,6 @@ export const useSort = (rows: any, orderSeq: any, orderSeqBy: any) => {
     const sortedRows = stableSort(rows, getSorting(order, orderBy));
   
   
-    return {sortedRows, order, createSortHandler};
+    return {sortedRows, order, orderBy, createSortHandler};
   
   }

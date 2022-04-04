@@ -12,7 +12,7 @@ const PriceSearch: React.FC<PriceSearchProps> = ({ onHandleSearchKeyword }) => {
 
     return (
         <>
-            <div className="bg-white flex flex-col mt-[5%] mr-[20%] mb-[2%] ml-[2%]">
+            <div className="bg-white flex flex-col mt-[2%] mr-[20%] mb-[2%] ml-[2%]">
 
                 {/*SearchInputWrapper*/}
                 <div className="flex flex-row min-h-[3vh]">

@@ -181,29 +181,6 @@ const PriceContainer = () => {
 		setSearchKeyword(searchKeyword);
 	};
 
-	// const columns = useMemo(
-	// 	() => [
-	// 		{
-	// 			Header: "한글명",
-	// 			accessor: "code",
-	// 		},
-	// 		{
-	// 			Header: "현재가",
-	// 			accessor: "currentPrice",
-	// 		},
-	// 		{
-	// 			Header: "전일대비",
-	// 			accessor: "changeRate",
-	// 		},
-	// 		{
-	// 			Header: "거래대금",
-	// 			accessor: "tradeVolume",
-	// 		},
-	// 	],
-	// 	[]
-	// );
-
-	// const data = useMemo(() => filterCoinList(priceInfo), [priceInfo]);
 	
     
     const filterCoinList = (data: PriceInfo[] | undefined) => {
@@ -248,7 +225,7 @@ const PriceContainer = () => {
 			<div className="h-1/6">
 				<PriceSearch onHandleSearchKeyword={handleSearchKeyword} />
 
-				<nav className="py-4 px-6 text-sm font-small">
+				<nav className="py-3 px-6 text-sm font-small">
 					<ul className="flex justify-items-center space-x-3">
 						<li className="basis-1/2">
 							<a
