@@ -13,6 +13,7 @@ import PriceInfo from "./Upbit/PriceInfo";
 interface ContainerProps {}
 
 const Container: React.FunctionComponent<ContainerProps> = () => {
+
 	return (
 		<div className="container mx-auto">
 			{/*Header*/}

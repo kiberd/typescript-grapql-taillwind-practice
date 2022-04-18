@@ -4,8 +4,8 @@ import { IMessageEvent, w3cwebsocket } from "websocket";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { coinListState } from "../recoil/coin/atom";
 
-import CoinPrice from "./CoinPrice"
-import CoinInfo from "./CoinInfo"
+import CoinPrice from "./CoinPrice";
+import CoinInfo from "./CoinInfo";
 
 interface PriceInfo {
   code: string;
@@ -163,8 +163,6 @@ const PriceInfo = () => {
   return (
     <div className="flex w-full h-1/6 justify-center items-center">
       <div className="w-full h-full border border-black-600 rounded-md mr-5 ml-5 mt-8">
-
-
         <div className="flex flex-row h-1/3 border-b">
           <div className="ml-4 mr-4 mt-3 mb-3">
             <span
@@ -184,8 +182,22 @@ const PriceInfo = () => {
 
           {/* 시세 정보 아이콘 */}
           <div className="flex flex-row ml-auto w-2/6">
-            <div className={`w-2/5 text-center mt-3.5 cursor-pointer ${!isInfo ? "border-b-4 border-indigo-500 text-indigo-500" : null}`} onClick={() => setIsInfo(!isInfo)}>시세</div>
-            <div className={`w-2/5 text-center mt-3.5 cursor-pointer ${isInfo ? "border-b-4 border-indigo-500 text-indigo-500" : null}`} onClick={() => setIsInfo(!isInfo)}>정보</div>
+            <div
+              className={`w-2/5 text-center mt-3.5 cursor-pointer ${
+                !isInfo ? "border-b-4 border-indigo-500 text-indigo-500" : null
+              }`}
+              onClick={() => setIsInfo(!isInfo)}
+            >
+              시세
+            </div>
+            <div
+              className={`w-2/5 text-center mt-3.5 cursor-pointer ${
+                isInfo ? "border-b-4 border-indigo-500 text-indigo-500" : null
+              }`}
+              onClick={() => setIsInfo(!isInfo)}
+            >
+              정보
+            </div>
             <div className="flex justify-center items-center w-1/5 border-l">
               <div>
                 <span
@@ -214,13 +226,10 @@ const PriceInfo = () => {
         </div>
 
         {/* Coin price */}
-		{!isInfo && priceInfo ? <CoinPrice priceInfo={priceInfo} /> : null}
-    
-		{/* Coin Info */}
-		{isInfo ? <CoinInfo/> : null}
+        {!isInfo && priceInfo ? <CoinPrice priceInfo={priceInfo} /> : null}
 
-
-
+        {/* Coin Info */}
+        {isInfo ? <CoinInfo /> : null}
       </div>
     </div>
   );
